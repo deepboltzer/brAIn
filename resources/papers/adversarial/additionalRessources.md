@@ -8,3 +8,5 @@
 - [Open AI ACKTR & A2C](https://openai.com/blog/baselines-acktr-a2c/)
 - [Open AI PPO](https://openai.com/blog/openai-baselines-ppo/)
 - [DQN Tianshu](https://github.com/thu-ml/tianshou)
+- [multiagent-competition (used in Berkley paper)](https://github.com/openai/multiagent-competition)
+- [openAI spinning up policy Gradient implementation](https://spinningup.openai.com/en/latest/spinningup/rl_intro3.html)
