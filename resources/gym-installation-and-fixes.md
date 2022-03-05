@@ -24,7 +24,7 @@ If you run into problems this might be helpful [StackOverflow on torch.cuda.is_a
 
 ## Install gym atari roms
 
-Note that roms are no longer included with the gym installation, therefore they'll have to be installed seperately using AutoROM:
+Note that roms are no longer included with the gym installation, therefore they'll have to be installed separately using AutoROM:
 
 ```
 pip install autorom
