@@ -15,6 +15,7 @@
    - agent was trained over 15000 timesteps
    - the model was saved (`/models/cartpole-v1`) and evaluated every 500 timesteps
    - evaluation was done over 100 evaluation episodes and can be found in the `/out/cartpole-v1/cartpole_v1_15000.csv`
+   - check `visualize` for plots
 
 ## CartPole-v1k
 
