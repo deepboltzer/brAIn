@@ -1,7 +1,7 @@
 import gym
 from stable_baselines3.common.vec_env import VecVideoRecorder, DummyVecEnv
 
-def record_video(env_id, model, video_length=500, prefix='', video_folder='./out/videos/'):
+def record_video(env_id, model, video_length=500, prefix='', video_folder='./out'):
   """
   :param env_id: (str)
   :param model: (RL model)
