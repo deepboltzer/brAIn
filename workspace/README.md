@@ -15,7 +15,7 @@
    - agent was trained over 15000 timesteps
    - the model was saved (`/models/cartpole-v1`) and evaluated every 500 timesteps
    - evaluation was done over 100 evaluation episodes and can be found in the `/out/cartpole-v1/cartpole_v1_15000.csv`
-   - check `visualize` for plots
+   - check `plots` and `/out/videos/cartpole-v1` for visualization
 
 ## CartPole-v1k
 
@@ -27,4 +27,4 @@ A custom version of the CartPole environment was created. This version has an in
    - evaluation was done over 100 evaluation episodes and can be found in the `/out/cartpole-v1k/cartpole_v1k_15000.csv`
    - agent reaches maximum rewards in a comparable amount of timesteps as with `CartPole-v1`
    - parallel to the increase in mean rewards the standard deviation decreased over the course of the learning period
-   - check `visualize` for plots
+   - check `plots` and `/out/videos/cartpole-v1` for visualization
