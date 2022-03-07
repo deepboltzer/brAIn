@@ -11,4 +11,10 @@ Tried it; didn't matter, but took ages to run.
 Maybe instead try to save the model more frequently.
 Remember to re-run the evaluation and visualisation too and modify the README. <mark>done</mark>
 
+## Update README with uniform attack
+
 ## Move learn+save code in utility file
+
+## Maybe change file names
+
+## Clean-up over-all structure
