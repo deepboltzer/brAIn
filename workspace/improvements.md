@@ -16,6 +16,11 @@ Remember to re-run the evaluation and visualisation too and modify the README. <
 - Update README with uniform attack
 - Uniform attack track amount of pertubation
 - Consider calculated target action in pertubation of observation
+- Maybe change how mean perturbation is calculated; right now:
+  - adversary doesn't interfere much
+  - agent performs well
+  - episodes are long
+  - perturbation sums up to a high value
 
 ## Update README with info on stable-baselines3
 
