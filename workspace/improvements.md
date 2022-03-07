@@ -11,7 +11,13 @@ Tried it; didn't matter, but took ages to run.
 Maybe instead try to save the model more frequently.
 Remember to re-run the evaluation and visualisation too and modify the README. <mark>done</mark>
 
-## Update README with uniform attack
+## Uniform attack
+
+- Update README with uniform attack
+- Uniform attack track amount of pertubation
+- Consider calculated target action in pertubation of observation
+
+## Update README with info on stable-baselines3
 
 ## Move learn+save code in utility file
 
