@@ -6,8 +6,8 @@ Uniform attack on a model in the CartPole-v1 environment.
 """
 
 
-def perturbate(env, obs, perturbation):
-    """Perturbate the observation to hinder the agent.
+def perturb(env, obs, perturbation=(0.0, 0.0, 0.0, 0.0)):
+    """Perturb the observation to hinder the agent.
     :param env: target environment
     :param obs: observation to craft an adversarial sample from
     :param perturbation: amount of perturbation to apply
@@ -38,26 +38,34 @@ def perturbate(env, obs, perturbation):
             # If x is already to the left -> target action: move left
             # Therefore pretend x is more to the right and pole is angled more to the left
             x_perturbation = 1 * perturbation[0]
-            theta_perturbation = -1 * perturbation[1]
+            x_dot_perturbation = 1 * perturbation[1]
+            theta_perturbation = -1 * perturbation[2]
+            theta_dot_perturbation = -1 * perturbation[3]
         else:
             x_perturbation = -1 * perturbation[0]
-            theta_perturbation = 1 * perturbation[1]
+            x_dot_perturbation = -1 * perturbation[1]
+            theta_perturbation = 1 * perturbation[2]
+            theta_dot_perturbation = 1 * perturbation[3]
             
     else:
         if theta < 0:
             # Pole is angled to the left -> target action: move right
             # Therefore pretend x is more to the left and pole is angled more to the right
             x_perturbation = -1 * perturbation[0]
-            theta_perturbation = 1 * perturbation[1]
+            x_dot_perturbation = -1 * perturbation[1]
+            theta_perturbation = 1 * perturbation[2]
+            theta_dot_perturbation = 1 * perturbation[3]
         else:
             x_perturbation = 1 * perturbation[0]
-            theta_perturbation = -1 * perturbation[1]
+            x_dot_perturbation = 1 * perturbation[1]
+            theta_perturbation = -1 * perturbation[2]
+            theta_dot_perturbation = -1 * perturbation[3]
 
     # Generate adversarial sample to trick the agent to select target action
     x = obs[0] + x_perturbation
-    x_dot = obs[1]
+    x_dot = obs[1] + x_dot_perturbation
     theta = obs[2] + theta_perturbation
-    theta_dot = obs[3]
+    theta_dot = obs[3] + theta_dot_perturbation
     
     # CartPole-v1's state: (x, x_dot, theta, theta_dot)
     state = (x, x_dot, theta, theta_dot)

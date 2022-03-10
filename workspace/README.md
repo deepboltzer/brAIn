@@ -47,7 +47,7 @@ We ran the Proximal Policy Optimization algorithm on two versions of the CartPol
 
 ### CartPole-v1k
 
-A custom version of the CartPole environment was created. This version has an increased maximum episode timesteps of 1'000.
+A custom version of the CartPole environment. This version has an increased maximum episode timesteps of 1000.
 
 `test_ppo_cartpole_v1k`
 
@@ -57,3 +57,7 @@ A custom version of the CartPole environment was created. This version has an in
 - agent reaches maximum rewards in a comparable amount of timesteps as with `CartPole-v1`
 - parallel to the increase in mean rewards the standard deviation decreased over the course of the learning period
 - check `/out/` for visualization
+
+## Adversarial attacks
+
+### Uniform attack
