@@ -25,7 +25,7 @@ def perturb(env, obs, perturbation=(0.0, 0.0, 0.0, 0.0)):
 
     # Calculate which variable is closer to termination condition
     x_danger = np.absolute((x_threshold - np.absolute(x)) / x_threshold)
-    theta_danger = np.absolute((theta_threshold / 360 - np.absolute(theta)) / theta_threshold)
+    theta_danger = np.absolute((theta_threshold - np.absolute(theta)) / theta_threshold)
 
     # Actions are encoded as 
     # '0' -> push cart to the left
