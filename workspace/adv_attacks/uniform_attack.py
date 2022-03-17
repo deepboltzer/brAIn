@@ -6,7 +6,7 @@ Uniform attack on a model in the CartPole-v1 environment.
 """
 
 
-def perturb(env, obs, perturbation=(0.0, 0.0, 0.0, 0.0)):
+def perturb(env, obs, perturbation=(0.0, 0.0, 0.5, 0.5)):
     """Perturb the observation to hinder the agent.
     :param env: target environment
     :param obs: observation to craft an adversarial sample from
@@ -24,8 +24,8 @@ def perturb(env, obs, perturbation=(0.0, 0.0, 0.0, 0.0)):
     theta = obs[2]
 
     # Calculate which variable is closer to termination condition
-    x_danger = np.absolute((x_threshold - np.absolute(x)) / x_threshold)
-    theta_danger = np.absolute((theta_threshold - np.absolute(theta)) / theta_threshold)
+    x_danger = np.absolute(x / x_threshold)
+    theta_danger = np.absolute(theta/ theta_threshold)
 
     # Actions are encoded as 
     # '0' -> push cart to the left
@@ -75,4 +75,4 @@ def perturb(env, obs, perturbation=(0.0, 0.0, 0.0, 0.0)):
 
     total_perturbation = np.absolute(obs - adversarial_sample)
 
-    return adversarial_sample, total_perturbation
+    return adversarial_sample, total_perturbation, 1
