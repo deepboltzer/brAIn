@@ -22,6 +22,12 @@ Remember to re-run the evaluation and visualisation too and modify the README. <
   - episodes are long
   - perturbation sums up to a high value
 - <s>move perturb() into separate python file</s>
+- rerun and remove division by timestep for mean perturbation
+  - also do something about the difference in the threshold for x and theta
+
+## Strategically timed attack
+
+- <s>results do not seem right</s>
 
 ## Update README with info on stable-baselines3
 
@@ -30,3 +36,5 @@ Remember to re-run the evaluation and visualisation too and modify the README. <
 ## Maybe change file names
 
 ## Clean-up over-all structure
+
+## Create function get_save_dir() in utils.py
