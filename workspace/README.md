@@ -61,3 +61,5 @@ A custom version of the CartPole environment. This version has an increased maxi
 ## Adversarial attacks
 
 ### Uniform attack
+
+### Strategically timed attack

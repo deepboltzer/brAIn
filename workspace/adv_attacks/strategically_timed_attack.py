@@ -2,15 +2,16 @@ import numpy as np
 import gym
 
 """
-Uniform attack on a model in the CartPole-v1 environment.
+Strategically timed attack on a model in the CartPole-v1 environment.
 """
 
 
-def perturb(env, obs, perturbation=(0.0, 0.0, 0.5, 0.5)):
+def perturb(env, obs, perturbation=(0.0, 0.0, 0.5, 0.5), beta=0.0):
     """Perturb the observation to hinder the agent.
     :param env: target environment
     :param obs: observation to craft an adversarial sample from
     :param perturbation: amount of perturbation to apply
+    :param threshold: when is a timestep classified as strategically efficient (default=0.0=uniform attack)
     """
 
     # Threshholds
@@ -25,7 +26,12 @@ def perturb(env, obs, perturbation=(0.0, 0.0, 0.5, 0.5)):
 
     # Calculate which variable is closer to termination condition
     x_danger = np.absolute(x / x_threshold)
-    theta_danger = np.absolute(theta/ theta_threshold)
+    theta_danger = np.absolute(theta / theta_threshold)
+
+    # Determine if this is a strategically efficient timestep for an attack
+    if np.maximum(x_danger, theta_danger) < beta:
+        total_perturbation = np.absolute(obs - obs)
+        return obs, total_perturbation, 0
 
     # Actions are encoded as 
     # '0' -> push cart to the left
