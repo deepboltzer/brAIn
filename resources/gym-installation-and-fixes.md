@@ -41,3 +41,9 @@ gym.make('ALE/Breakout-v5')
 ```
 
 This should not throw any errors.
+
+## Box2D
+
+- useful [link](https://medium.com/@sayanmndl21/install-openai-gym-with-box2d-and-mujoco-in-windows-10-e25ee9b5c1d5) for Box2D.
+- yet another [link](https://stackoverflow.com/questions/50037674/attributeerror-module-box2d-has-no-attribute-rand-limit-swigconstant)
+- [this one](https://tzattack.wordpress.com/2018/01/08/attributeerror-module-_box2d-has-no-attribute-rand_limit_swigconstant/)fixed it
