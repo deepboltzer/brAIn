@@ -1,3 +1,6 @@
+# Models folder is growing too big
+/workspace/ppo/models
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
