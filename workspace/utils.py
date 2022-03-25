@@ -1,3 +1,8 @@
+from email import header
+from math import factorial
+import numpy as np
+import pandas as pd
+
 import gym
 from stable_baselines3.common.vec_env import VecVideoRecorder, DummyVecEnv
 
@@ -26,3 +31,19 @@ def record_video(env_id, model, video_length=500, prefix='', video_folder='./out
 
   # Close the video recorder
   eval_env.close()
+
+
+def load_log(file_path):
+  """
+  Loads data from an evaluations.npz file and returns it as pandas Dataframe.
+  :param file_path: (str)
+  """
+  with np.load(file_path) as f:
+    f = dict(f)
+    data = {}
+    data['timesteps'] = f['timesteps']
+    data['mean_rew'] = [np.mean(x) for x in f['results']]
+    data['mean_ep_lengths'] = [np.mean(x) for x in f['ep_lengths']]
+    df = pd.DataFrame(data).set_index('timesteps')
+
+    return df
