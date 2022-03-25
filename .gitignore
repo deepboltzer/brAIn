@@ -1,5 +1,5 @@
 # Models folder is growing too big
-/workspace/ppo/models
+/workspace/ppo/models/carracing-v1
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
