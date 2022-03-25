@@ -43,7 +43,7 @@ def load_log(file_path):
     data = {}
     data['timesteps'] = f['timesteps']
     data['mean_rew'] = [np.mean(x) for x in f['results']]
-    data['mean_ep_lengths'] = [np.mean(x) for x in f['ep_lengths']]
+    data['mean_ep_length'] = [np.mean(x) for x in f['ep_lengths']]
     df = pd.DataFrame(data).set_index('timesteps')
 
     return df
