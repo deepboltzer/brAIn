@@ -1,5 +1,5 @@
-# Models folder is growing too big
-/workspace/ppo/models/carracing-v1
+# File for quick tests
+quick_test.ipynb
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
