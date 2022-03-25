@@ -1,5 +1,14 @@
 # Workspace
 
+## Installation
+
+To use the utils package across the project navigate into the package folder and install via pip. Optional flag `-e` installs in "editable" mode, meaning that instead of copying the files into your virtual environment, a symlink will be created to the files where they are.
+
+```
+cd utils
+pip install [-e]
+```
+
 ## [CartPole](https://gym.openai.com/envs/CartPole-v1/)
 
 A pole is attached by an un-actuated joint to a cart, which moves along a frictionless track. The system is controlled by applying a force of +1 or -1 to the cart. The pendulum starts upright, and the goal is to prevent it from falling over. A reward of +1 is provided for every timestep that the pole remains upright. The episode ends when the pole is more than 15 degrees from vertical, or the cart moves more than 2.4 units from the center.
