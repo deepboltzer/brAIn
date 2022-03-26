@@ -37,7 +37,7 @@ def record_video(env_id, model, video_length=500, prefix='', video_folder='./out
 
 def load_log(file_path):
   """
-  Loads data from an evaluations.npz file and returns it as pandas Dataframe.
+  Loads data from an evaluations.npz file and returns it as pandas DataFrame.
   :param file_path: (str)
   """
   with np.load(file_path) as f:
@@ -52,6 +52,15 @@ def load_log(file_path):
 
 
 def plot_log(data, title, xlabel='timesteps', ylabel='mean reward', figsize=(9,5), axis=[0, 500000, -100, 750]):
+  """
+  Takes pandas DataFrame and plots it.
+  :param data: (DataFrame)
+  :param title: (str)
+  :param xlabel: (str)
+  :param ylabel: (str)
+  :param figsize: (tupel)
+  :param axis: (list)
+  """
   plt.figure(figsize=figsize)
   plt.plot(data.index, data['mean_rew'], color='darkslategray', alpha=1, zorder=0)
   plt.vlines(data.index, ymin=0, ymax=data['mean_rew'], color=np.where(data['mean_rew'] < 0, 'maroon', 'darkgreen'), alpha=1, zorder=1)
