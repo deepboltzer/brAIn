@@ -1,0 +1,128 @@
+{
+  "artifacts": [
+    "env_0_episode_0_recording.mp4",
+    "env_0_episode_0_metadata.json"
+  ],
+  "command": "score_agent",
+  "experiment": {
+    "base_dir": "/venv/lib/python3.7/site-packages/aprl",
+    "dependencies": [
+      "numpy==1.21.5",
+      "sacred==0.8.2"
+    ],
+    "mainfile": "score_agent.py",
+    "name": "score",
+    "repositories": [],
+    "sources": [
+      [
+        "__init__.py",
+        "_sources/__init___d41d8cd98f00b204e9800998ecf8427e.py"
+      ],
+      [
+        "common/__init__.py",
+        "_sources/__init___d41d8cd98f00b204e9800998ecf8427e.py"
+      ],
+      [
+        "common/utils.py",
+        "_sources/utils_f89dc4432b750b0e33f0765ad76a128b.py"
+      ],
+      [
+        "envs/__init__.py",
+        "_sources/__init___16cbb2d6c07d5873ccc7b9395c972cce.py"
+      ],
+      [
+        "envs/gym_compete.py",
+        "_sources/gym_compete_bc3afffb47e66e66b48474617ea54482.py"
+      ],
+      [
+        "envs/multi_agent.py",
+        "_sources/multi_agent_2ec3395fb4d3287899d4a751820a49cc.py"
+      ],
+      [
+        "envs/observation_masking.py",
+        "_sources/observation_masking_e8a3081e806023847e55f498248fc601.py"
+      ],
+      [
+        "envs/wrappers.py",
+        "_sources/wrappers_260ebb344a08d9657ce44e9d1a0c1f31.py"
+      ],
+      [
+        "policies/__init__.py",
+        "_sources/__init___5a17d97d523e24cfbdb9a2ce9b0ad4ec.py"
+      ],
+      [
+        "policies/loader.py",
+        "_sources/loader_d89a151e79c650b5595c054fd8fa91dd.py"
+      ],
+      [
+        "policies/wrappers.py",
+        "_sources/wrappers_4b681ab1adc5627710e8e442ee0b5df1.py"
+      ],
+      [
+        "score_agent.py",
+        "_sources/score_agent_d784c02cd9adc39a6f20d1f885ced798.py"
+      ],
+      [
+        "visualize/__init__.py",
+        "_sources/__init___d41d8cd98f00b204e9800998ecf8427e.py"
+      ],
+      [
+        "visualize/annotated_gym_compete.py",
+        "_sources/annotated_gym_compete_075da8c30b3e2cbc860b59e99b61b079.py"
+      ]
+    ]
+  },
+  "heartbeat": "2022-03-29T17:14:09.214031",
+  "host": {
+    "ENV": {},
+    "cpu": "AMD Ryzen 7 5700U with Radeon Graphics",
+    "hostname": "cd33fa05dfb4",
+    "os": [
+      "Linux",
+      "Linux-5.10.16.3-microsoft-standard-WSL2-x86_64-with-Ubuntu-18.04-bionic"
+    ],
+    "python_version": "3.7.5"
+  },
+  "meta": {
+    "command": "score_agent",
+    "options": {
+      "--beat-interval": null,
+      "--capture": null,
+      "--comment": null,
+      "--debug": false,
+      "--enforce_clean": false,
+      "--file_storage": null,
+      "--force": false,
+      "--help": false,
+      "--loglevel": null,
+      "--mongo_db": null,
+      "--name": null,
+      "--pdb": false,
+      "--print-config": false,
+      "--priority": null,
+      "--queue": false,
+      "--s3": null,
+      "--sql": null,
+      "--tiny_db": null,
+      "--unobserved": false,
+      "COMMAND": null,
+      "UPDATE": [
+        "env_name=multicomp/KickAndDefend-v0",
+        "agent_b_type=ppo2",
+        "agent_b_path=/adversarial-policies/data/baselines/KickAndDefend_v1_defender/final_model/",
+        "videos=True"
+      ],
+      "help": false,
+      "with": true
+    }
+  },
+  "resources": [],
+  "result": {
+    "ties": 4,
+    "win0": 6,
+    "win1": 10
+  },
+  "start_time": "2022-03-29T17:07:53.210379",
+  "status": "COMPLETED",
+  "stop_time": "2022-03-29T17:14:09.210197"
+}

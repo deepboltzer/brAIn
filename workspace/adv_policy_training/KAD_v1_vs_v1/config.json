@@ -1,0 +1,40 @@
+{
+  "agent_a_path": "1",
+  "agent_a_type": "zoo",
+  "agent_b_path": "/adversarial-policies/data/baselines/KickAndDefend_v1_defender/final_model/",
+  "agent_b_type": "ppo2",
+  "env_name": "multicomp/KickAndDefend-v0",
+  "episodes": 20,
+  "index_keys": [],
+  "mask_agent_index": null,
+  "mask_agent_masking_type": "initialization",
+  "mask_agent_noise": null,
+  "noisy_agent_index": null,
+  "noisy_agent_magnitude": 1.0,
+  "num_env": 1,
+  "record_traj": false,
+  "record_traj_params": {
+    "agent_indices": null,
+    "save_dir": "data/trajectories"
+  },
+  "render": true,
+  "seed": 0,
+  "timesteps": null,
+  "transparent_params": null,
+  "video_params": {
+    "annotated": false,
+    "annotation_params": {
+      "camera_config": "default",
+      "font": "times",
+      "font_size": 70,
+      "resolution": [
+        1920,
+        1080
+      ],
+      "short_labels": false
+    },
+    "save_dir": null,
+    "single_file": true
+  },
+  "videos": true
+}

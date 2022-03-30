@@ -1,0 +1,52 @@
+INFO - score - Running command 'score_agent'
+INFO - score - Started run with ID "6"
+INFO - score_agent - No directory provided for saving videos; using a tmpdir instead, but videos will be saved to Sacred run directory
+Creating agent humanoid_kicker
+Reading agent XML from: /venv/lib/python3.7/site-packages/gym_compete/new_envs/assets/humanoid_body.xml
+Creating agent humanoid_goalkeeper
+Reading agent XML from: /venv/lib/python3.7/site-packages/gym_compete/new_envs/assets/humanoid_body.xml
+Scene XML path: /venv/lib/python3.7/site-packages/gym_compete/new_envs/assets/world_body_football.humanoid_body.humanoid_body.xml
+Created Scene with agents
+2022-03-29 17:17:58.977200: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2022-03-29 17:17:58.993998: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 1796565000 Hz
+2022-03-29 17:17:58.998995: I tensorflow/compiler/xla/service/service.cc:150] XLA service 0x677be70 executing computations on platform Host. Devices:
+2022-03-29 17:17:58.999112: I tensorflow/compiler/xla/service/service.cc:158]   StreamExecutor device (0): <undefined>, <undefined>
+INFO - aprl.envs.gym_compete - Loaded zoo parameters from 'agent_zoo/KickAndDefend-v0/agent1_parameters-v1.pkl'
+WARNING:tensorflow:From /venv/lib/python3.7/site-packages/tensorflow/python/framework/op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+WARNING - tensorflow - From /venv/lib/python3.7/site-packages/tensorflow/python/framework/op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+WARNING:tensorflow:From /venv/lib/python3.7/site-packages/gym_compete/policy.py:39: to_float (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.cast instead.
+WARNING - tensorflow - From /venv/lib/python3.7/site-packages/gym_compete/policy.py:39: to_float (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.cast instead.
+WARNING:tensorflow:From /venv/lib/python3.7/site-packages/gym_compete/policy.py:191: BasicLSTMCell.__init__ (from tensorflow.python.ops.rnn_cell_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+This class is equivalent as tf.keras.layers.LSTMCell, and will be replaced by that in Tensorflow 2.0.
+WARNING - tensorflow - From /venv/lib/python3.7/site-packages/gym_compete/policy.py:191: BasicLSTMCell.__init__ (from tensorflow.python.ops.rnn_cell_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+This class is equivalent as tf.keras.layers.LSTMCell, and will be replaced by that in Tensorflow 2.0.
+INFO - aprl.policy_loader - Loading Stable Baselines policy for '<class 'stable_baselines.ppo2.ppo2.PPO2'>' from '/adversarial-policies/data/baselines/KickAndDefend_v1_defender/final_model/'
+WARNING:tensorflow:From /venv/lib/python3.7/site-packages/stable_baselines/common/policies.py:561: flatten (from tensorflow.python.layers.core) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use keras.layers.flatten instead.
+WARNING - tensorflow - From /venv/lib/python3.7/site-packages/stable_baselines/common/policies.py:561: flatten (from tensorflow.python.layers.core) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use keras.layers.flatten instead.
+WARNING:tensorflow:From /venv/lib/python3.7/site-packages/tensorflow/python/ops/math_ops.py:3066: to_int32 (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.cast instead.
+WARNING - tensorflow - From /venv/lib/python3.7/site-packages/tensorflow/python/ops/math_ops.py:3066: to_int32 (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.cast instead.
+INFO - aprl.policy_loader - Loaded normalization statistics from '/adversarial-policies/data/baselines/KickAndDefend_v1_defender/final_model/vec_normalize.pkl'
+INFO - mujoco_py_131.mjviewer - initializing glfw@(3, 1, 2)
+ERROR - mujoco_py_131.mjviewer - GLFW error: 65544, desc: b'X11: RandR gamma ramp support seems broken'
+ERROR - mujoco_py_131.mjviewer - GLFW error: 65544, desc: b'Linux: Failed to watch for joystick connections in /dev/input: No such file or directory'
+ERROR - mujoco_py_131.mjviewer - GLFW error: 65544, desc: b'Linux: Failed to open joystick device directory /dev/input: No such file or directory'
+INFO - score - Result: {'win0': 12, 'win1': 4, 'ties': 4}
+INFO - score - Completed after 0:04:22
