@@ -1,6 +1,9 @@
 # File for quick tests
 quick_test.ipynb
 
+# vs code settings
+.vscode
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
