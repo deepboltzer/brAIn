@@ -17,8 +17,8 @@ class FGSMAttack():
     def perturb(self, obs, target):
         """Returns an adversarial sample using FGSM."""
         action, _states = self.model.predict(obs) 
-        y = torch.tensor(np.array([float(action)])) # model's output
-        target = torch.tensor(np.array([float(target)])) # cross entropy target
+        y = torch.tensor(action) # model's output
+        target = torch.tensor(target) # cross entropy target
         
         loss = F.cross_entropy(y, target) # calculate loss cross_entropy(y_pred, y_true)
         grad = loss.backward() # cross entropy loss backward calculates the gradient of the current tensor
