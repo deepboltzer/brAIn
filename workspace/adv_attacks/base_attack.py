@@ -18,7 +18,6 @@ class Base_Attack():
 
         self.reset_env()
 
-        self.episode_count = 0 # current number of episodes
         self.reward_total = 0 # total cumulative episode reward
         self.frames_count = 0 # current number of frames/timesteps in current episode
         self.n_attacks = 0 # number of attacks performed
@@ -60,5 +59,5 @@ class Base_Attack():
 
     @abstractmethod
     def attack(self):
-        """Performs an adversarial attack based on self.attack."""
+        """Performs an adversarial attack based on self.attack on one episode."""
         pass
