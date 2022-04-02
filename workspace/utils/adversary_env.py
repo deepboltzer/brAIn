@@ -17,6 +17,7 @@ class AdversaryEnv(gym.Env):
         self.env.reset()
 
     def reset(self):
+        self.env.reset()
         return self.observation_space.sample()
 
     def step(self, action):

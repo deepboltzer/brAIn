@@ -27,7 +27,7 @@ class BaseAttack(ABC):
         
     def reset_env(self):
         """Resets the environment and collects the observation."""
-        self.data.last_obs = self.env.reset()
+        self.data.set_last_obs(self.env.reset())
 
     def reset_attack(self):
         """Resets the episode and therefore all episode dependent variables."""
