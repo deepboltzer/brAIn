@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 import torch
+from utils.data import AttackData
 
 
 class BaseAttack(ABC):
@@ -16,7 +17,7 @@ class BaseAttack(ABC):
         self.attack = attack
 
         self.epsilon = epsilon
-        self.data = {'last_obs': None, 'last_act': None, 'last_rew': None, 'last_done': False, 'last_info': None}
+        self.data = AttackData()
 
         self.reset_env()
 
@@ -26,7 +27,7 @@ class BaseAttack(ABC):
         
     def reset_env(self):
         """Resets the environment and collects the observation."""
-        self.data['last_obs'] = self.env.reset()
+        self.data.last_obs = self.env.reset()
 
     def reset_attack(self):
         """Resets the episode and therefore all episode dependent variables."""
@@ -34,11 +35,11 @@ class BaseAttack(ABC):
 
     def update_data(self, obs, act, rew, done, info):
         """Updates data dictionary accordingly."""
-        self.data['last_obs'] = obs
-        self.data['last_act'] = act
-        self.data['last_rew'] = rew
-        self.data['last_done'] = done
-        self.data['last_info'] = info
+        self.data.last_obs = obs
+        self.data.last_act = act
+        self.data.last_rew = rew
+        self.data.last_done = done
+        self.data.last_info = info
 
     def perform_step(self, act):
         """
@@ -49,13 +50,13 @@ class BaseAttack(ABC):
         self.update_data(obs, act, rew, done, info)
         self.reward_total += rew
 
-        if self.data['last_done']:
+        if self.data.last_done:
             self.reset_env()
 
     def predict(self, obs):
         """Chooses action based on model."""
         act, _states = self.model.predict(obs)
-        self.data['last_act'] = act
+        self.data.last_act = act
         return act
 
     def craft_sample(self, orig_obs, orig_act):

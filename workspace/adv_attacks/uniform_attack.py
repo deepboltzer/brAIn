@@ -15,10 +15,10 @@ class UniformAttack(BaseAttack):
         self.reset_attack()
         self.reset_env()
 
-        while not self.data['last_done']:
-            orig_obs = self.data['last_obs']
+        while not self.data.last_done:
+            orig_obs = self.data.last_obs
             orig_act = self.predict(orig_obs)
-            print(self.data['last_obs'])
+            print(self.data.last_obs)
             print(orig_act)
             adv_sample = self.craft_sample(orig_obs, orig_act)
             perturbed_act, _states = self.predict(adv_sample)
