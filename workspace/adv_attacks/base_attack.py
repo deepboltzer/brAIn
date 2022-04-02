@@ -1,20 +1,22 @@
-from abc import abstractmethod
+from abc import ABC, abstractmethod
 import torch
 
 
-class Base_Attack():
+class BaseAttack(ABC):
     """
     Base class for adversarial attacks.
     :param env: environment
     :param attack: e.g. FGSM_Attack
     """
 
-    def __init__(self, env, model, attack, device = 'cuda' if torch.cuda.is_available() else 'cpu'):
+    def __init__(self, env, model, attack, epsilon=0.25, device='cuda' if torch.cuda.is_available() else 'cpu'):
         self.device = device
         self.env = env
         self.model = model
         self.attack = attack
-        self.data = {'obs': {}, 'action': {}, 'rew': {}, 'done': {}, 'info': {}}
+
+        self.epsilon = epsilon
+        self.data = {'last_obs': None, 'last_act': None, 'last_rew': None, 'last_done': False, 'last_info': None}
 
         self.reset_env()
 
@@ -24,40 +26,43 @@ class Base_Attack():
         
     def reset_env(self):
         """Resets the environment and collects the observation."""
-        self.data['obs'] = self.env.reset()
+        self.data['last_obs'] = self.env.reset()
 
     def reset_attack(self):
-        """Resets the episode and therefore all episode dependent variables."""#
-        self.episode_count, self.reward_total, self.n_attacks = 0, 0, 0
+        """Resets the episode and therefore all episode dependent variables."""
+        self.reward_total, self.n_attacks = 0, 0
 
-    def update_data(self, obs, action, rew, done, info):
+    def update_data(self, obs, act, rew, done, info):
         """Updates data dictionary accordingly."""
-        self.data['obs'][self.frames_count] = obs
-        self.data['action'][self.frames_count] = action
-        self.data['rew'][self.frames_count] = rew
-        self.data['done'][self.frames_count] = done
-        self.data['info'][self.frames_count] = info
+        self.data['last_obs'] = obs
+        self.data['last_act'] = act
+        self.data['last_rew'] = rew
+        self.data['last_done'] = done
+        self.data['last_info'] = info
 
-    def perform_step(self, action):
+    def perform_step(self, act):
         """
         Perform an action chosen by the model and store next observation.
         Also checks if the episode finished and resets the environment.
         """
-        obs, rew, done, info = self.env.step(action)
-        self.update_data(obs, action, rew, done, info)
+        obs, rew, done, info = self.env.step(act)
+        self.update_data(obs, act, rew, done, info)
         self.reward_total += rew
 
-        if self.data['done'][self.frames_count]:
-            self.episode_count += 1
+        if self.data['last_done']:
             self.reset_env()
 
-    def predict(self):
+    def predict(self, obs):
         """Chooses action based on model."""
-        action, _ = self.model.predict(self.data['obs'][self.frames_count])
-        self.data['action'][self.frames_count] = action
-        return action
+        act, _states = self.model.predict(obs)
+        self.data['last_act'] = act
+        return act
+
+    def craft_sample(self, orig_obs, orig_act):
+        """Craft adversarial sample using self.attack."""
+        return self.attack.predict(orig_act, deterministic=True)
 
     @abstractmethod
-    def attack(self):
-        """Performs an adversarial attack based on self.attack on one episode."""
-        pass
+    def perform_attack(self):
+        """Performs an adversarial attack  on one episode."""
+        raise NotImplementedError()
