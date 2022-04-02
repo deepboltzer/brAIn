@@ -35,11 +35,11 @@ class BaseAttack(ABC):
 
     def update_data(self, obs, act, rew, done, info):
         """Updates data dictionary accordingly."""
-        self.data.last_obs = obs
-        self.data.last_act = act
-        self.data.last_rew = rew
-        self.data.last_done = done
-        self.data.last_info = info
+        self.data.set_last_obs(obs)
+        self.data.set_last_act(act)
+        self.data.set_last_rew(rew)
+        self.data.set_last_done(done)
+        self.data.set_last_info(info)
 
     def perform_step(self, act):
         """
@@ -56,10 +56,10 @@ class BaseAttack(ABC):
     def predict(self, obs):
         """Chooses action based on model."""
         act, _states = self.model.predict(obs)
-        self.data.last_act = act
+        self.data.set_last_act(act)
         return act
 
-    def craft_sample(self, orig_obs, orig_act):
+    def craft_sample(self, orig_act):
         """Craft adversarial sample using self.attack."""
         return self.attack.predict(orig_act, deterministic=True)
 
