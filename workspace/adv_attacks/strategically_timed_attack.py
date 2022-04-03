@@ -38,6 +38,6 @@ class StrategicallyTimedAttack(Base_Attack):
         env_copy1 = copy.deepcopy(self.env)
         env_copy2 = copy.deepcopy(self.env)
         _state, max_act, _done, _info = env_copy1.step(orig_act)
-        _state, min_act, _done, _info = env_copy2.step(orig_act)
+        _state, min_act, _done, _info = env_copy2.step(perturbed_act)
 
         return max_act - min_act
