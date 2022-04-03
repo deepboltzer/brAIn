@@ -22,7 +22,7 @@ class StrategicallyTimedAttack(Base_Attack):
             orig_act, _states = self.predict(orig_obs)
             adv_sample = self.craft_sample(orig_obs, orig_act)
             perturbed_act, _states = self.predict(adv_sample)
-            if self.c() >= self.beta:
+            if self.c(orig_act, perturbed_act) >= self.beta:
                 self.perform_step(perturbed_act)
             else:
                 self.perform_step(orig_act)
