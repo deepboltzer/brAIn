@@ -1,10 +1,10 @@
 import torch
 import copy
 
-from base_attack import Base_Attack
+from base_attack import BaseAttack
 
 
-class StrategicallyTimedAttack(Base_Attack):
+class StrategicallyTimedAttack(BaseAttack):
     """Class for strategically timed adversarial attack."""
 
     def __init__(self, env, model, attack, beta):
