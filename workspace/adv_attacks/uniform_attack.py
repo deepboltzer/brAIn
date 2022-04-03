@@ -1,4 +1,3 @@
-from re import A
 import torch
 
 from base_attack import BaseAttack

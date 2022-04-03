@@ -68,6 +68,8 @@ class BaseAttack(ABC):
 
     def craft_sample(self, orig_obs, orig_act):
         """Craft adversarial sample using self.attack."""
+        self.n_attacks += 1
+
         orig_adv_sample, _states = self.attack.predict(orig_act)
 
         # scale with epsilon
