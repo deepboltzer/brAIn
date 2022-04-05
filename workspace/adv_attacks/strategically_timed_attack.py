@@ -35,11 +35,11 @@ class StrategicallyTimedAttack(BaseAttack):
         :param orig_act: original action on unperturbed observation
         :param perturbed_act: action chosen on adversarial sample
         """
-        print(f"{self.env.lander = }")
-        env_copy1 = copy.deepcopy(self.env)
-        print(f"{env_copy1.lander = }")
-        env_copy2 = copy.deepcopy(self.env)
+        env_copy1 = copy.copy(self.env)
+        env_copy2 = copy.copy(self.env)
         _state, max_act, _done, _info = env_copy1.step(orig_act)
         _state, min_act, _done, _info = env_copy2.step(perturbed_act)
+
+        del env_copy1, env_copy2
 
         return max_act - min_act
