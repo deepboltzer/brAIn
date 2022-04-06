@@ -20,3 +20,4 @@ class UniformAttack(BaseAttack):
             adv_sample = self.craft_sample(orig_obs, orig_act)
             perturbed_act, _states = self.predict(adv_sample)
             self.perform_step(perturbed_act)
+            self.n_attacks += 1
