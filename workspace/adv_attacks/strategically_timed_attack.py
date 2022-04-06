@@ -20,10 +20,11 @@ class StrategicallyTimedAttack(BaseAttack):
             
             orig_obs = self.data.last_obs
             orig_act, _states = self.predict(orig_obs)
-            adv_sample = self.craft_sample(orig_obs, orig_act)
+            adv_sample, perturbation = self.craft_sample(orig_obs, orig_act)
             perturbed_act, _states = self.predict(adv_sample)
             if self.c(orig_act, perturbed_act) >= self.beta:
                 self.perform_step(perturbed_act)
+                self.perturbation_total += perturbation
                 self.n_attacks += 1
             else:
                 self.perform_step(orig_act)
@@ -36,11 +37,14 @@ class StrategicallyTimedAttack(BaseAttack):
         :param orig_act: original action on unperturbed observation
         :param perturbed_act: action chosen on adversarial sample
         """
-        env_copy1 = copy.deepcopy(self.env)
-        env_copy2 = copy.deepcopy(self.env)
-        _state, max_act, _done, _info = env_copy1.step(orig_act)
-        _state, min_act, _done, _info = env_copy2.step(perturbed_act)
+        # env_copy1 = copy.deepcopy(self.env)
+        # env_copy2 = copy.deepcopy(self.env)
+        # _state, max_act, _done, _info = env_copy1.step(orig_act)
+        # _state, min_act, _done, _info = env_copy2.step(perturbed_act)
 
-        del env_copy1, env_copy2
+        # del env_copy1, env_copy2
+
+        _state, max_act, _done, _info = self.env.test_action(orig_act)
+        _state, min_act, _done, _info = self.env.test_action(perturbed_act)
 
         return max_act - min_act

@@ -76,8 +76,7 @@ class BaseAttack(ABC):
         adv_sample = orig_obs - scaled_perturbation
 
         perturbation = np.abs(orig_obs - adv_sample)
-        self.perturbation_total += perturbation
-        return adv_sample
+        return adv_sample, perturbation
 
     @abstractmethod
     def perform_attack(self):
