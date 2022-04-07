@@ -66,9 +66,9 @@ class BaseAttack(ABC):
         self.data.last_act = act
         return act, _states
 
-    def craft_sample(self, orig_obs, orig_act):
+    def craft_sample(self, orig_obs):
         """Craft adversarial sample using self.attack."""
-        orig_adv_sample, _states = self.attack.predict(orig_act)
+        orig_adv_sample, _states = self.attack.predict(orig_obs)
 
         # scale with epsilon
         orig_perturbation = orig_obs - orig_adv_sample

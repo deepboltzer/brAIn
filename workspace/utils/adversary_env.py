@@ -12,7 +12,7 @@ class AdversaryEnv(gym.Env):
         self.targ_model = targ_model
         
         self.action_space = self.env.observation_space
-        self.observation_space = self.env.action_space
+        self.observation_space = self.env.observation_space
 
         self.env.reset()
 
@@ -28,7 +28,7 @@ class AdversaryEnv(gym.Env):
         obs, rew, done, info = self.env.step(targ_model_act)
         rew *= -1 
 
-        return targ_model_act, rew, done, info
+        return obs, rew, done, info
 
     def render(self, mode="human"):
         return self.env.render(mode)
