@@ -75,7 +75,7 @@ class BaseAttack(ABC):
         scaled_perturbation = orig_perturbation * self.epsilon
         adv_sample = orig_obs - scaled_perturbation
 
-        perturbation = np.abs(orig_obs - adv_sample)
+        perturbation = np.sum(np.abs(orig_obs - adv_sample))
         return adv_sample, perturbation
 
     @abstractmethod

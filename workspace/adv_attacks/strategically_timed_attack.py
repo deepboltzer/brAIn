@@ -1,3 +1,4 @@
+from audioop import maxpp
 import torch
 import copy
 
@@ -37,11 +38,18 @@ class StrategicallyTimedAttack(BaseAttack):
         :param orig_act: original action on unperturbed observation
         :param perturbed_act: action chosen on adversarial sample
         """
-        env_copy1 = copy.deepcopy(self.env)
-        env_copy2 = copy.deepcopy(self.env)
-        _state, max_act, _done, _info = env_copy1.step(orig_act)
-        _state, min_act, _done, _info = env_copy2.step(perturbed_act)
+        # env_copy1 = copy.deepcopy(self.env)
+        # env_copy2 = copy.deepcopy(self.env)
+        # _state1, max_act, _done1, _info1 = env_copy1.step(orig_act)
+        # _state2, min_act, _done2, _info2 = env_copy2.step(perturbed_act)
 
-        del env_copy1, env_copy2
+        # del env_copy1, env_copy2
+
+        _state1, max_act, _done1, _info1 = self.env.test_action(orig_act)
+        _state2, min_act, _done2, _info2 = self.env.test_action(perturbed_act)
+
+        # print(f"{_state1 = }, {_state2 = }")
+        # print(f"{max_act = } {min_act = }")
+        # print(f"{max_act == min_act = }")
 
         return max_act - min_act
