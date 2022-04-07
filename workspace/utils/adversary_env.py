@@ -8,7 +8,7 @@ class AdversaryEnv(gym.Env):
     """
 
     def __init__(self, env, targ_model):
-        self.env = gym.make(env)
+        self.env = env
         self.targ_model = targ_model
         
         self.action_space = self.env.observation_space
