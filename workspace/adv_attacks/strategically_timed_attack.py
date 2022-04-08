@@ -1,7 +1,5 @@
+import numpy as np
 from audioop import maxpp
-import torch
-import copy
-
 from base_attack import BaseAttack
 
 
@@ -18,19 +16,17 @@ class StrategicallyTimedAttack(BaseAttack):
         self.reset_env()
 
         while not self.data.last_done:
-            
+
             orig_obs = self.data.last_obs
-            orig_act, _states = self.predict(orig_obs)
-            adv_sample, perturbation = self.craft_sample(orig_obs)
-            perturbed_act, _states = self.predict(adv_sample)
-            if self.c(orig_act, perturbed_act) >= self.beta:
+            if self.c(orig_obs) >= self.beta:
+                adv_sample = self.craft_sample(orig_obs)
+                perturbed_act, _states = self.predict(adv_sample)
                 self.perform_step(perturbed_act)
-                self.perturbation_total += perturbation
-                self.n_attacks += 1
             else:
+                orig_act, _states = self.predict(orig_obs)
                 self.perform_step(orig_act)
-    
-    def c(self, orig_act, perturbed_act):
+
+    def c(self, state):
         """
         Action preference function. 
         The higher the value the more this action is preferred over the other.
@@ -38,18 +34,9 @@ class StrategicallyTimedAttack(BaseAttack):
         :param orig_act: original action on unperturbed observation
         :param perturbed_act: action chosen on adversarial sample
         """
-        # env_copy1 = copy.deepcopy(self.env)
-        # env_copy2 = copy.deepcopy(self.env)
-        # _state1, max_act, _done1, _info1 = env_copy1.step(orig_act)
-        # _state2, min_act, _done2, _info2 = env_copy2.step(perturbed_act)
+        act_prob = self.predict_action_probabilities(state)
 
-        # del env_copy1, env_copy2
-
-        _state1, max_act, _done1, _info1 = self.env.test_action(orig_act)
-        _state2, min_act, _done2, _info2 = self.env.test_action(perturbed_act)
-
-        # print(f"{_state1 = }, {_state2 = }")
-        # print(f"{max_act = } {min_act = }")
-        # print(f"{max_act == min_act = }")
+        max_act = np.max(act_prob)
+        min_act = np.min(act_prob)
 
         return max_act - min_act

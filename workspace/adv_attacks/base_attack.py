@@ -66,6 +66,14 @@ class BaseAttack(ABC):
         self.data.last_act = act
         return act, _states
 
+    def predict_action_probabilities(self, state):
+        """Returns array containing probabilites for each possible action given the state."""
+        obs = self.model.policy.obs_to_tensor(state)[0]
+        dis = self.model.policy.get_distribution(obs)
+        probs = dis.distribution.probs
+        probs_np = probs.cpu().detach().numpy()[0]
+        return probs_np
+
     def craft_sample(self, orig_obs):
         """Craft adversarial sample using self.attack."""
         orig_adv_sample, _states = self.attack.predict(orig_obs)
@@ -76,7 +84,11 @@ class BaseAttack(ABC):
         adv_sample = orig_obs - scaled_perturbation
 
         perturbation = np.sum(np.abs(orig_obs - adv_sample))
-        return adv_sample, perturbation
+        self.perturbation_total += perturbation
+
+        self.n_attacks += 1
+
+        return adv_sample
 
     @abstractmethod
     def perform_attack(self):

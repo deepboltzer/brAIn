@@ -17,8 +17,6 @@ class UniformAttack(BaseAttack):
         while not self.data.last_done:
             orig_obs = self.data.last_obs
             orig_act, _states = self.predict(orig_obs)
-            adv_sample, perturbation = self.craft_sample(orig_obs)
+            adv_sample = self.craft_sample(orig_obs)
             perturbed_act, _states = self.predict(adv_sample)
             self.perform_step(perturbed_act)
-            self.perturbation_total += perturbation
-            self.n_attacks += 1
