@@ -24,11 +24,11 @@ class BaseAttack(ABC):
 
         self.reset_env()
 
-        self.reward_total = 0 # total cumulative episode reward
-        self.frames_count = 0 # current number of frames/timesteps in current episode
-        self.perturbation_total = 0 # total cumulative perturbation on observations
-        self.n_attacks = 0 # number of attacks performed
-        
+        self.reward_total = 0  # total cumulative episode reward
+        self.frames_count = 0  # current number of frames/timesteps in current episode
+        self.perturbation_total = 0  # total cumulative perturbation on observations
+        self.n_attacks = 0  # number of attacks performed
+
     def reset_env(self):
         """Resets the environment and collects the observation."""
         obs = self.env.reset()
@@ -79,16 +79,17 @@ class BaseAttack(ABC):
         orig_adv_sample, _states = self.attack.predict(orig_obs)
 
         # scale with epsilon
-        orig_perturbation = orig_obs - orig_adv_sample
-        scaled_perturbation = orig_perturbation * self.epsilon
-        adv_sample = orig_obs - scaled_perturbation
+        # orig_perturbation = orig_obs - orig_adv_sample
+        # scaled_perturbation = orig_perturbation * self.epsilon
+        # adv_sample = orig_obs - scaled_perturbation
+        scaled_adv_sample = orig_adv_sample * self.epsilon
 
-        perturbation = np.sum(np.abs(orig_obs - adv_sample))
+        perturbation = np.sum(np.abs(orig_obs - scaled_adv_sample))
         self.perturbation_total += perturbation
 
         self.n_attacks += 1
 
-        return adv_sample
+        return scaled_adv_sample
 
     @abstractmethod
     def perform_attack(self):

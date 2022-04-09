@@ -1,5 +1,6 @@
 import gym
 
+
 class AdversaryEnv(gym.Env):
     """
     Simple environment to train an adversary on a given model.
@@ -10,11 +11,11 @@ class AdversaryEnv(gym.Env):
     def __init__(self, env, targ_model):
         self.env = env
         self.targ_model = targ_model
-        
+
         self.action_space = self.env.observation_space
         self.observation_space = self.env.observation_space
 
-        self.env.reset()
+        self.state = self.env.reset()
 
     def reset(self):
         self.env.reset()
@@ -22,11 +23,11 @@ class AdversaryEnv(gym.Env):
 
     def step(self, action):
         """Adversary supplies target model with observation and receives its action as new state."""
-        targ_model_act, _states = self.targ_model.predict(action)
+        targ_model_act, _states = self.targ_model.predict(self.state + action)
 
         # retreive reward as the inverted reward returned by original environment
         obs, rew, done, info = self.env.step(targ_model_act)
-        rew *= -1 
+        rew *= -1
 
         return obs, rew, done, info
 
