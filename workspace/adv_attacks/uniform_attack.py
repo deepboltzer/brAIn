@@ -9,7 +9,7 @@ class UniformAttack(BaseAttack):
     def __init__(self, env, model, attack, epsilon):
         super().__init__(env, model, attack, epsilon)
 
-    def perform_attack(self):
+    def perform_attack(self, render=False):
         """Performs an adversarial attack on one episode."""
         self.reset_attack()
         self.reset_env()
@@ -20,3 +20,5 @@ class UniformAttack(BaseAttack):
             adv_sample = self.craft_sample(orig_obs)
             perturbed_act, _states = self.predict(adv_sample)
             self.perform_step(perturbed_act)
+            if render:
+                self.render()

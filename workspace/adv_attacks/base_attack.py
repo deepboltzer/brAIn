@@ -91,6 +91,10 @@ class BaseAttack(ABC):
 
         return scaled_adv_sample
 
+    def render(self):
+        """Standard render function."""
+        self.env.render()
+
     @abstractmethod
     def perform_attack(self):
         """Performs an adversarial attack  on one episode."""

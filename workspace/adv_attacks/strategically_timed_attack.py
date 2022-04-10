@@ -10,7 +10,7 @@ class StrategicallyTimedAttack(BaseAttack):
         super().__init__(env, model, attack, epsilon)
         self.beta = beta
 
-    def perform_attack(self):
+    def perform_attack(self, render=False):
         """Performs an adversarial attack based on self.attack on one episode."""
         self.reset_attack()
         self.reset_env()
@@ -25,6 +25,8 @@ class StrategicallyTimedAttack(BaseAttack):
             else:
                 orig_act, _states = self.predict(orig_obs)
                 self.perform_step(orig_act)
+            if render:
+                self.render()
 
     def c(self, state):
         """
